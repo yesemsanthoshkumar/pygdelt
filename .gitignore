@@ -100,4 +100,8 @@ ENV/
 # mypy
 .mypy_cache/
 
+# Downloaded data files
 *.zip
+
+# VS Code
+.vscode
