@@ -39,19 +39,6 @@ def download(url, op_file='output'):
     return pref_loc
 
 
-def as_df(fname, **kwargs):
-    """Reads the given file and returns a dataframe
-
-    Parameters
-    ----------
-    fname   :   str
-        Path to the data file
-    kwargs
-        Arguments to pandas.read_csv
-    """
-    return pd.read_csv(fname, kwargs)
-
-
 class Events(object):
     """Handles all the queyring for events table in  GDELT version 1.0"""
 
@@ -69,9 +56,17 @@ class Events(object):
             Additional arguments to pandas.read_csv
         """
         url = "%s/%s.export.CSV.zip" % (self._url, req_date)
-        f_name = download(url, req_date)
+        self._filepath = download(url, req_date)
 
-        return as_df(f_name, kwargs)
+    def as_df(self, **kwargs):
+        """Reads the given file and returns a dataframe
+
+        Parameters
+        ----------
+        kwargs
+            Arguments to pandas.read_csv
+        """
+        return pd.read_csv(self._filepath, **kwargs)
 
     def __repr__(self):
         return "PyGDELT Version1 - Events Data"
