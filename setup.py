@@ -4,7 +4,7 @@ from os import path
 
 with open(
     path.join(
-        path.abspath(__file__),
+        path.dirname(path.abspath(__file__)),
         'README.md'
         )) as readme:
     DESC = readme.read()

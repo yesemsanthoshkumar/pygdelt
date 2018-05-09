@@ -7,6 +7,8 @@ import os
 import requests as rq
 from tqdm import tqdm
 
+import pandas as pd
+
 _DATA_DIR = 'pygdelt/data'
 
 
@@ -37,24 +39,39 @@ def download(url, op_file='output'):
     return pref_loc
 
 
+def as_df(fname, **kwargs):
+    """Reads the given file and returns a dataframe
+
+    Parameters
+    ----------
+    fname   :   str
+        Path to the data file
+    kwargs
+        Arguments to pandas.read_csv
+    """
+    return pd.read_csv(fname, kwargs)
+
+
 class Events(object):
     """Handles all the queyring for events table in  GDELT version 1.0"""
 
     def __init__(self):
         self._url = 'http://data.gdeltproject.org/events'
 
-    def query(self, req_date):
+    def query(self, req_date, **kwargs):
         """Query the data for the specified datetime
 
         Parameters
         ----------
-        req_date  :   integer
+        req_date  :   str
             Represents the date of the event data to download
+        kwargs
+            Additional arguments to pandas.read_csv
         """
         url = "%s/%s.export.CSV.zip" % (self._url, req_date)
         f_name = download(url, req_date)
 
-        return f_name
+        return as_df(f_name, kwargs)
 
     def __repr__(self):
         return "PyGDELT Version1 - Events Data"
