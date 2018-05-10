@@ -1,4 +1,4 @@
-"""Base for pyGDELT
+"""Base for PyGDELT
 """
 
 
@@ -6,8 +6,8 @@ class GDELT(object):
     def query(self, req_date, **kwargs):
         raise NotImplementedError
 
-    def as_df(self, **kwargs):
+    def to_df(self, **kwargs):
         raise NotImplementedError
 
-    def __repr__(self):
+    def _download(self, req_date):
         raise NotImplementedError

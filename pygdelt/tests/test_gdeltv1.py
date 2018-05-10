@@ -1,27 +1,22 @@
 """Tests for pygdelt.gdeltv1"""
 
-import unittest
-from pygdelt import gdeltv1 as v1
 from unittest.mock import patch
 
-class TestEvents(unittest.TestCase):
+from pygdelt import gdeltv1 as gdelt
 
-    def test_event_creation(self):
-        ev =  v1.Events()
 
-        self.assertEqual(
-            ev._url,
-            "http://data.gdeltproject.org/events"
-        )
+class TestEvents(object):
 
-    def test_events_query(self):
-        with patch.object(v1, 'download') as mock_download:
-            mock_download.return_value = 'pygdelt/data/20180127.export.CSV.zip'
+    def test_url(self):
+        ev = gdelt.Events()
 
-            ev = v1.Events()
-            ev.query('20180127')
+        assert ev._url == "http://data.gdeltproject.org/events"
 
-            self.assertEqual(
-                ev._filepath,
-                'pygdelt/data/20180127.export.CSV.zip'
-            )
+    def test_query(self):
+        with patch.object(gdelt.GDELTV1, '_download') as mock_download:
+            mock_download.return_value = 'pygdelt/v1/20180127.export.CSV.zip'
+
+            ev = gdelt.Events()
+            res = ev.query('20180127')
+
+            assert res == 'pygdelt/v1/20180127.export.CSV.zip'
