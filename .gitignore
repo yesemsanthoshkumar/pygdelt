@@ -108,3 +108,6 @@ ENV/
 
 # PyTest
 .pytest_cache
+
+# Sample Data files
+pygdelt/data

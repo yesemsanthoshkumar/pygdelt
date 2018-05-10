@@ -60,10 +60,10 @@ class GDELTV1(GDELT):
             os.makedirs(_DATA_DIR)
 
         dt_strf = req_date.strftime("%Y%m%d")
-        f_name = f'{dt_strf}.zip'
+        f_name = "{0}.zip".format(dt_strf)
         pref_loc = os.path.join(_DATA_DIR, f_name)
 
-        url_formatted = f'{self._url}/{dt_strf}.{self._suffix}'
+        url_formatted = "{0}/{1}.{3}".format(self._url, dt_strf, self._suffix)
         resp = rq.get(self._url, stream=True)
 
         with open(pref_loc, 'wb') as data_file:
@@ -73,7 +73,10 @@ class GDELTV1(GDELT):
         return pref_loc
 
     def __repr__(self):
-        return f"PyGDELT - {__class__.__name__} for GDELT Version {_VERSION}"
+        return "PyGDELT - {0} for GDELT Version {1}".format(
+            __class__.__name__,
+            _VERSION
+        )
 
 
 class Events(GDELTV1):

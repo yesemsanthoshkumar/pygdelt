@@ -11,7 +11,7 @@ with open(
 
 setup(
     name='pygdelt',
-    version='0.0.1b',
+    version='0.0.1a1',
     description='An easy interface to GDELT datasets',
     long_description=DESC,
     long_description_content_type='text/markdown',
@@ -22,14 +22,14 @@ setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
-        'License :: OSI Approved :: Apache License 2.0',
+        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
     keywords='gdelt',
-    packages=['pygdelt'],
+    packages=["pygdelt"],
     install_requires=[
         'requests>=2.18.4',
         'tqdm>=4.23.2'

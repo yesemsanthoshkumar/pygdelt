@@ -81,7 +81,7 @@ class GDELTV2(GDELT):
         # **_DATA_DIR/req_date** and return this folder
 
         for dt in generate_day_range(req_date):
-            url_formatted = f'{self._url}/{dt}.{self._suffix}'
+            url_formatted = "{0}/{1}.{2}".format(self._url, dt, self._suffix)
             resp = rq.get(url_formatted, stream=True)
 
             f_name = os.path.join(pref_loc, dt + ".zip")
@@ -92,7 +92,10 @@ class GDELTV2(GDELT):
         return pref_loc
 
     def __repr__(self):
-        return f"PyGDELT - {__class__.__name__} for GDELT Version {_VERSION}"
+        return "PyGDELT - {0} for GDELT Version {1}".format(
+            __class__.__name__,
+            _VERSION
+        )
 
 
 class Events(GDELTV2):
