@@ -1,5 +1,5 @@
 """Has all data and utility functions for dealing with
-GDELT data version 1.0
+GDELT data version 2.0
 """
 
 import os
@@ -8,7 +8,7 @@ import pandas as pd
 import requests as rq
 from tqdm import tqdm
 
-from pygdelt import V1_DATA_DIR as _DATA_DIR
+from pygdelt import V2_DATA_DIR as _DATA_DIR
 from pygdelt import GDELT
 
 
@@ -40,20 +40,18 @@ def download(url, op_file='output'):
 
 
 class Events(GDELT):
-    """Handles all the queyring for events table in  GDELT version 1.0"""
+    """Handles all the queyring for events table in  GDELT version 2.0"""
 
     def __init__(self):
-        self._url = 'http://data.gdeltproject.org/events'
+        self._url = 'http://data.gdeltproject.org/gdeltv2'
 
-    def query(self, req_date, **kwargs):
+    def query(self, req_date):
         """Query the data for the specified datetime
 
         Parameters
         ----------
         req_date  :   str
             Represents the date of the event data to download
-        kwargs
-            Additional arguments to pandas.read_csv
         """
         url = "%s/%s.export.CSV.zip" % (self._url, req_date)
         self._filepath = download(url, req_date)
@@ -70,3 +68,33 @@ class Events(GDELT):
 
     def __repr__(self):
         return "PyGDELT Version1 - Events Data"
+
+
+class Mentions(GDELT):
+
+    def __init__(self, *args, **kwargs):
+        self._url = "http://data.gdeltproject.org/gdeltv2"
+
+    def query(self, req_date):
+        """Query the data for the specified datetime
+
+        Parameters
+        ----------
+        req_date  :   str
+            Represents the date of the event data to download
+        """
+        url = "%s/%s.mentions.CSV.zip" % (self._url, req_date)
+        self._filepath = download(url, req_date)
+
+    def as_df(self, **kwargs):
+        """Reads the given file and returns a dataframe
+
+        Parameters
+        ----------
+        kwargs
+            Arguments to pandas.read_csv
+        """
+        return pd.read_csv(self._filepath, **kwargs)
+
+    def __repr__(self):
+        return "PyGDELT Version2 - Mentions Data"
