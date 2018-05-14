@@ -1,11 +1,6 @@
 pygdelt package
 ===============
 
-.. automodule:: pygdelt
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 Subpackages
 -----------
 
@@ -16,6 +11,14 @@ Subpackages
 Submodules
 ----------
 
+pygdelt.gdelt\_base module
+--------------------------
+
+.. automodule:: pygdelt.gdelt_base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pygdelt.gdeltv1 module
 ----------------------
 
@@ -24,4 +27,19 @@ pygdelt.gdeltv1 module
     :undoc-members:
     :show-inheritance:
 
+pygdelt.gdeltv2 module
+----------------------
 
+.. automodule:: pygdelt.gdeltv2
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pygdelt
+    :members:
+    :undoc-members:
+    :show-inheritance:

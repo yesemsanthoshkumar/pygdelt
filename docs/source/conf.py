@@ -19,6 +19,8 @@
 #
 import os
 import sys
+import pygdelt
+
 sys.path.insert(0, os.path.abspath('../../'))
 
 # -- General configuration ------------------------------------------------
@@ -32,7 +34,6 @@ sys.path.insert(0, os.path.abspath('../../'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
     'sphinxcontrib.napoleon'
 ]
 
@@ -62,7 +63,6 @@ author = 'yesemsanthoshkumar'
 # built documents.
 #
 # The short X.Y version.
-import pygdelt
 
 version = pygdelt.__version__
 # The full version, including alpha/beta/rc tags.
