@@ -80,13 +80,13 @@ class GDELTV2(GDELT):
         # For verion 2.0 we download all the files under the folder inside
         # **_DATA_DIR/req_date** and return this folder
 
-        for dt in generate_day_range(req_date):
+        for dt in tqdm(generate_day_range(req_date), disable=hide_progress):
             url_formatted = "{0}/{1}.{2}".format(self._url, dt, self._suffix)
             resp = rq.get(url_formatted, stream=True)
 
             f_name = os.path.join(pref_loc, dt + ".zip")
             with open(f_name, 'wb') as data_file:
-                for chunk in tqdm(resp.iter_content(), disable=hide_progress):
+                for chunk in resp.iter_content():
                     data_file.write(chunk)
 
         return pref_loc
