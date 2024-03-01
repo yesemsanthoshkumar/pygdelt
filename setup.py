@@ -32,7 +32,8 @@ setup(
     packages=["pygdelt"],
     install_requires=[
         'requests>=2.18.4',
-        'tqdm>=4.23.2'
+        'tqdm>=4.23.2',
+        'pandas<2.0',
     ],
     package_data={
         '': ['LICENSE'],
