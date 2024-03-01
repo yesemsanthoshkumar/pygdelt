@@ -63,7 +63,7 @@ class GDELTV1(GDELT):
         f_name = "{0}.zip".format(dt_strf)
         pref_loc = os.path.join(_DATA_DIR, f_name)
 
-        url_formatted = "{0}/{1}.{3}".format(self._url, dt_strf, self._suffix)
+        url_formatted = "{0}/{1}.{2}".format(self._url, dt_strf, self._suffix)
         resp = rq.get(self._url, stream=True)
 
         with open(pref_loc, 'wb') as data_file:
